@@ -1,460 +1,501 @@
-!DOCTYPE html
-html lang=pt
-head
-meta charset=UTF-8
-meta name=viewport content=width=device-width, initial-scale=1.0
-titleImplementIQ Systems — Ferramentas Internastitle
-link href=httpsfonts.googleapis.comcss2family=Synewght@400;600;700;800&family=DM+Sanswght@300;400;500&display=swap rel=stylesheet
-style
-  root {
-    --dark #1a1a2e;
-    --darker #12121f;
-    --card #1e1e35;
-    --card2 #252540;
-    --purple #7c5cbf;
-    --purple-light #9b7de0;
-    --purple-dim rgba(124,92,191,0.15);
-    --text #e8e8f0;
-    --muted #8888a8;
-    --border rgba(124,92,191,0.2);
-    --white #ffffff;
-  }
-   { box-sizing border-box; margin 0; padding 0; }
-  body { background var(--darker); color var(--text); font-family 'DM Sans', sans-serif; min-height 100vh; }
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImplementIQ — Ferramentas Internas</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #1a1a2e;
+  --darker: #12121f;
+  --card: #1e1e35;
+  --card2: #252540;
+  --purple: #7c5cbf;
+  --purple-light: #9b7de0;
+  --purple-dim: rgba(124,92,191,0.15);
+  --text: #e8e8f0;
+  --muted: #8888a8;
+  --border: rgba(124,92,191,0.2);
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--darker); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-  header {
-    background var(--dark);
-    border-bottom 1px solid var(--border);
-    padding 18px 40px;
-    display flex;
-    align-items center;
-    gap 16px;
-    position sticky;
-    top 0;
-    z-index 100;
-  }
-  .brand h1 { font-family 'Syne', sans-serif; font-size 15px; font-weight 800; letter-spacing 2px; text-transform uppercase; color var(--white); }
-  .brand span { font-size 11px; color var(--muted); letter-spacing 1px; text-transform uppercase; }
-  .header-badge { margin-left auto; font-size 11px; color var(--purple-light); background var(--purple-dim); border 1px solid var(--border); padding 4px 12px; border-radius 20px; letter-spacing 1px; text-transform uppercase; }
+header { background: var(--dark); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+.brand h1 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
+.brand span { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.header-badge { margin-left: auto; font-size: 11px; color: var(--purple-light); background: var(--purple-dim); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
 
-  .tabs { display flex; padding 32px 40px 0; border-bottom 1px solid var(--border); }
-  .tab { padding 12px 28px; font-family 'Syne', sans-serif; font-size 13px; font-weight 600; letter-spacing 1px; text-transform uppercase; color var(--muted); cursor pointer; border-bottom 2px solid transparent; transition all 0.2s; }
-  .tabhover { color var(--text); }
-  .tab.active { color var(--purple-light); border-bottom-color var(--purple); }
+.tabs { display: flex; padding: 32px 40px 0; border-bottom: 1px solid var(--border); }
+.tab { padding: 12px 28px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--purple-light); border-bottom-color: var(--purple); }
 
-  .content { padding 40px; max-width 960px; margin 0 auto; }
-  .section { display none; }
-  .section.active { display block; }
+.content { padding: 40px; max-width: 960px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
 
-  .section-title { font-family 'Syne', sans-serif; font-size 22px; font-weight 700; margin-bottom 8px; color var(--white); }
-  .section-sub { font-size 13px; color var(--muted); margin-bottom 32px; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--white); }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
 
-  .card { background var(--card); border 1px solid var(--border); border-radius 12px; padding 28px; margin-bottom 20px; }
-  .card-title { font-family 'Syne', sans-serif; font-size 13px; font-weight 700; text-transform uppercase; letter-spacing 1.5px; color var(--purple-light); margin-bottom 20px; display flex; align-items center; gap 8px; }
-  .card-titlebefore { content ''; display block; width 3px; height 14px; background var(--purple); border-radius 2px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
+.card-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--purple-light); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.card-title::before { content: ''; display: block; width: 3px; height: 14px; background: var(--purple); border-radius: 2px; }
 
-  .form-grid { display grid; grid-template-columns 1fr 1fr; gap 16px; }
-  .form-grid.three { grid-template-columns 1fr 1fr 1fr; }
-  .form-grid.full { grid-template-columns 1fr; }
-  .field { display flex; flex-direction column; gap 6px; }
-  .field label { font-size 11px; font-weight 500; color var(--muted); text-transform uppercase; letter-spacing 1px; }
-  .field input, .field select, .field textarea { background var(--darker); border 1px solid var(--border); border-radius 8px; padding 10px 14px; color var(--text); font-family 'DM Sans', sans-serif; font-size 14px; outline none; transition border-color 0.2s; }
-  .field inputfocus, .field selectfocus, .field textareafocus { border-color var(--purple); }
-  .field textarea { resize vertical; min-height 80px; }
-  .field select option { background var(--darker); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.field input, .field select, .field textarea { background: var(--darker); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple); }
+.field textarea { resize: vertical; min-height: 80px; }
+.field select option { background: var(--darker); }
 
-  .items-header { display grid; grid-template-columns 2fr 80px 100px 100px 36px; gap 8px; padding 8px 0; font-size 11px; color var(--muted); text-transform uppercase; letter-spacing 1px; border-bottom 1px solid var(--border); margin-bottom 8px; }
-  .item-row { display grid; grid-template-columns 2fr 80px 100px 100px 36px; gap 8px; margin-bottom 8px; align-items center; }
-  .item-row input { background var(--darker); border 1px solid var(--border); border-radius 6px; padding 8px 10px; color var(--text); font-family 'DM Sans', sans-serif; font-size 13px; outline none; width 100%; transition border-color 0.2s; }
-  .item-row inputfocus { border-color var(--purple); }
-  .item-row input[readonly] { background var(--card2); color var(--muted); }
+.items-header { display: grid; grid-template-columns: 2fr 80px 100px 100px 36px; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.item-row { display: grid; grid-template-columns: 2fr 80px 100px 100px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
+.item-row input { background: var(--darker); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; width: 100%; transition: border-color 0.2s; }
+.item-row input:focus { border-color: var(--purple); }
+.item-row input[readonly] { background: var(--card2); color: var(--muted); }
 
-  .btn-remove { background rgba(220,50,50,0.1); border 1px solid rgba(220,50,50,0.2); color #e05555; border-radius 6px; width 32px; height 32px; cursor pointer; font-size 16px; display flex; align-items center; justify-content center; transition all 0.2s; }
-  .btn-removehover { background rgba(220,50,50,0.2); }
+.btn-remove { background: rgba(220,50,50,0.1); border: 1px solid rgba(220,50,50,0.2); color: #e05555; border-radius: 6px; width: 32px; height: 32px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.btn-remove:hover { background: rgba(220,50,50,0.2); }
 
-  .totals { display flex; flex-direction column; align-items flex-end; gap 8px; margin-top 16px; padding-top 16px; border-top 1px solid var(--border); }
-  .total-row { display flex; gap 24px; font-size 13px; }
-  .total-row spanfirst-child { color var(--muted); }
-  .total-row spanlast-child { min-width 100px; text-align right; font-weight 500; }
-  .total-row.grand { font-family 'Syne', sans-serif; font-size 18px; font-weight 700; color var(--white); }
+.totals { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.total-row { display: flex; gap: 24px; font-size: 13px; }
+.total-row span:first-child { color: var(--muted); }
+.total-row span:last-child { min-width: 100px; text-align: right; font-weight: 500; }
+.total-row.grand { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
 
-  .actions { display flex; gap 12px; margin-top 24px; }
-  .btn { padding 12px 24px; border-radius 8px; font-family 'Syne', sans-serif; font-size 12px; font-weight 700; letter-spacing 1.5px; text-transform uppercase; cursor pointer; border none; transition all 0.2s; }
-  .btn-primary { background var(--purple); color var(--white); }
-  .btn-primaryhover { background var(--purple-light); }
-  .btn-outline { background transparent; border 1px solid var(--border); color var(--muted); }
-  .btn-outlinehover { border-color var(--purple); color var(--purple-light); }
-  .btn-add { background var(--purple-dim); border 1px dashed var(--purple); color var(--purple-light); padding 8px 16px; border-radius 6px; font-size 12px; font-weight 600; cursor pointer; margin-top 8px; transition all 0.2s; }
-  .btn-addhover { background rgba(124,92,191,0.25); }
+.actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.btn { padding: 12px 24px; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.2s; }
+.btn-primary { background: var(--purple); color: var(--white); }
+.btn-primary:hover { background: var(--purple-light); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.btn-outline:hover { border-color: var(--purple); color: var(--purple-light); }
+.btn-whatsapp { background: #25D366; color: white; display: flex; align-items: center; gap: 8px; }
+.btn-whatsapp:hover { background: #1ebe5a; }
+.btn-add { background: var(--purple-dim); border: 1px dashed var(--purple); color: var(--purple-light); padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
+.btn-add:hover { background: rgba(124,92,191,0.25); }
 
-  .pricing-header { display grid; grid-template-columns 1fr 120px 120px 36px; gap 8px; padding 8px 0; font-size 11px; color var(--muted); text-transform uppercase; letter-spacing 1px; border-bottom 1px solid var(--border); margin-bottom 8px; }
-  .pricing-service { display grid; grid-template-columns 1fr 120px 120px 36px; gap 8px; margin-bottom 8px; align-items center; }
-  .pricing-service input { background var(--darker); border 1px solid var(--border); border-radius 6px; padding 10px 12px; color var(--text); font-family 'DM Sans', sans-serif; font-size 13px; outline none; width 100%; transition border-color 0.2s; }
-  .pricing-service inputfocus { border-color var(--purple); }
+.pricing-header { display: grid; grid-template-columns: 1fr 120px 120px 36px; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.pricing-service { display: grid; grid-template-columns: 1fr 120px 120px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
+.pricing-service input { background: var(--darker); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; width: 100%; transition: border-color 0.2s; }
+.pricing-service input:focus { border-color: var(--purple); }
 
-  .divider { height 1px; background var(--border); margin 24px 0; }
-  .notice { background var(--purple-dim); border 1px solid var(--border); border-radius 8px; padding 12px 16px; font-size 12px; color var(--muted); margin-bottom 24px; }
-  .notice strong { color var(--purple-light); }
+.divider { height: 1px; background: var(--border); margin: 24px 0; }
+.notice { background: var(--purple-dim); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 12px; color: var(--muted); margin-bottom: 24px; }
+.notice strong { color: var(--purple-light); }
+.print-header { display: none; }
 
-  .print-header { display none; }
+@media (max-width: 640px) {
+  header { padding: 14px 16px; }
+  .header-badge { display: none; }
+  .tabs { padding: 16px 16px 0; overflow-x: auto; }
+  .tab { padding: 10px 14px; font-size: 11px; white-space: nowrap; }
+  .content { padding: 20px 16px; }
+  .card { padding: 18px 14px; }
+  .section-title { font-size: 18px; }
+  .form-grid, .form-grid.three { grid-template-columns: 1fr; }
+  .items-header { display: none; }
+  .item-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .item-row input:first-child { grid-column: 1 / -1; }
+  .item-row input[readonly] { background: var(--card2); color: var(--purple-light); font-weight: 700; }
+  .item-row .btn-remove { grid-column: 2; justify-self: end; }
+  .pricing-header { display: none; }
+  .pricing-service { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .pricing-service input:first-child { grid-column: 1 / -1; }
+  .pricing-service .btn-remove { grid-column: 2; justify-self: end; }
+  .actions { flex-direction: column; }
+  .btn { width: 100%; text-align: center; justify-content: center; }
+  .totals { align-items: stretch; }
+  .total-row { justify-content: space-between; }
+}
 
-  @media print {
-    body { background white !important; color black !important; }
-    header, .tabs, .actions, .btn-remove, .btn-add, #section-pricing { display none !important; }
-    .section { display block !important; }
-    .sectionnot(.active) { display none !important; }
-    .card { background white !important; border 1px solid #ddd !important; color black !important; break-inside avoid; }
-    .card-title { color #5a3d9a !important; }
-    .field label { color #666 !important; }
-    .field input, .field select, .field textarea { background white !important; border 1px solid #ccc !important; color black !important; }
-    .item-row input { background white !important; border 1px solid #ccc !important; color black !important; }
-    .total-row spanfirst-child { color #666 !important; }
-    .total-row.grand { color black !important; }
-    .section-title { color black !important; }
-    .section-sub, .notice { display none !important; }
-    .print-header { display flex !important; justify-content space-between; align-items flex-start; margin-bottom 32px; padding-bottom 20px; border-bottom 2px solid #5a3d9a; }
-    .print-doc-number { text-align right; }
-    .totals { border-top 1px solid #ccc !important; }
-    .items-header { border-bottom 1px solid #ccc !important; }
-  }
-style
-head
-body
+@media print {
+  body { background: white !important; color: black !important; }
+  header, .tabs, .actions, .btn-remove, .btn-add, #section-pricing { display: none !important; }
+  .section { display: block !important; }
+  .section:not(.active) { display: none !important; }
+  .card { background: white !important; border: 1px solid #ddd !important; color: black !important; break-inside: avoid; }
+  .card-title { color: #5a3d9a !important; }
+  .field label { color: #666 !important; }
+  .field input, .field select, .field textarea { background: white !important; border: 1px solid #ccc !important; color: black !important; }
+  .item-row input { background: white !important; border: 1px solid #ccc !important; color: black !important; }
+  .total-row span:first-child { color: #666 !important; }
+  .total-row.grand { color: black !important; }
+  .section-title { color: black !important; }
+  .section-sub, .notice { display: none !important; }
+  .print-header { display: flex !important; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #5a3d9a; }
+  .print-doc-number { text-align: right; }
+  .totals { border-top: 1px solid #ccc !important; }
+  .items-header { border-bottom: 1px solid #ccc !important; }
+}
+</style>
+</head>
+<body>
 
-header
-  svg width=42 height=42 viewBox=0 0 100 100 fill=none
-    circle cx=28 cy=18 r=8 fill=#6b6b8a
-    rect x=20 y=30 width=16 height=52 rx=4 fill=#6b6b8a
-    rect x=44 y=18 width=48 height=64 rx=14 fill=#6b6b8a
-    rect x=56 y=30 width=24 height=40 rx=6 fill=#12121f
-    rect x=56 y=62 width=36 height=12 rx=4 fill=#7c5cbf transform=rotate(-20 56 62)
-  svg
-  div class=brand
-    h1ImplementIQh1
-    spanSystemsspan
-  div
-  div class=header-badgeFerramentas Internasdiv
-header
+<header>
+  <svg width="42" height="42" viewBox="0 0 100 100" fill="none">
+    <circle cx="28" cy="18" r="8" fill="#6b6b8a"/>
+    <rect x="20" y="30" width="16" height="52" rx="4" fill="#6b6b8a"/>
+    <rect x="44" y="18" width="48" height="64" rx="14" fill="#6b6b8a"/>
+    <rect x="56" y="30" width="24" height="40" rx="6" fill="#12121f"/>
+    <rect x="56" y="62" width="36" height="12" rx="4" fill="#7c5cbf" transform="rotate(-20 56 62)"/>
+  </svg>
+  <div class="brand">
+    <h1>ImplementIQ</h1>
+    <span>Systems</span>
+  </div>
+  <div class="header-badge">Ferramentas Internas</div>
+</header>
 
-div class=tabs
-  div class=tab active onclick=showTab('pricing',this)Tabela de Preçosdiv
-  div class=tab onclick=showTab('quote',this)Orçamentodiv
-  div class=tab onclick=showTab('receipt',this)Recibodiv
-div
+<div class="tabs">
+  <div class="tab active" onclick="showTab('pricing',this)">Tabela de Precos</div>
+  <div class="tab" onclick="showTab('quote',this)">Orcamento</div>
+  <div class="tab" onclick="showTab('receipt',this)">Recibo</div>
+</div>
 
-div class=content
+<div class="content">
 
-!-- PREÇOS --
-div class=section active id=section-pricing
-  div class=section-titleTabela de Preçosdiv
-  div class=section-subReferência interna de serviços e valores base para orçamentação.div
-  div class=noticestrongUso interno.strong Estes valores servem de referência ao emitir orçamentos.div
+<div class="section active" id="section-pricing">
+  <div class="section-title">Tabela de Precos</div>
+  <div class="section-sub">Referencia interna de servicos e valores base para orcamentacao.</div>
+  <div class="notice"><strong>Uso interno.</strong> Estes valores servem de referencia ao emitir orcamentos.</div>
 
-  div class=card
-    div class=card-titleWeb &amp; Presença Digitaldiv
-    div class=pricing-headerspanServiçospanspanMín (€)spanspanMáx (€)spanspanspandiv
-    div id=services-web
-      div class=pricing-serviceinput type=text value=Landing Page simplesinput type=number value=150input type=number value=350button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Website institucional (até 5 páginas)input type=number value=400input type=number value=800button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Website com CMS (WordPress)input type=number value=600input type=number value=1200button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Loja online (e-commerce básico)input type=number value=900input type=number value=2000button class=btn-remove onclick=removeRow(this)×buttondiv
-    div
-    button class=btn-add onclick=addService('services-web')+ Adicionarbutton
-  div
+  <div class="card">
+    <div class="card-title">Web &amp; Presenca Digital</div>
+    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div id="services-web">
+      <div class="pricing-service"><input type="text" value="Landing Page simples"><input type="number" value="150"><input type="number" value="350"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Website institucional (ate 5 paginas)"><input type="number" value="400"><input type="number" value="800"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Website com CMS (WordPress)"><input type="number" value="600"><input type="number" value="1200"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Loja online (e-commerce basico)"><input type="number" value="900"><input type="number" value="2000"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+    </div>
+    <button class="btn-add" onclick="addService('services-web')">+ Adicionar</button>
+  </div>
 
-  div class=card
-    div class=card-titleAutomação &amp; Sistemasdiv
-    div class=pricing-headerspanServiçospanspanMín (€)spanspanMáx (€)spanspanspandiv
-    div id=services-auto
-      div class=pricing-serviceinput type=text value=Dashboard BI (Power BI  Looker)input type=number value=300input type=number value=800button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Automação de processos (n8n  Zapier)input type=number value=200input type=number value=600button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Integração de sistemas (API)input type=number value=400input type=number value=1200button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Formação  consultoria (por hora)input type=number value=50input type=number value=80button class=btn-remove onclick=removeRow(this)×buttondiv
-    div
-    button class=btn-add onclick=addService('services-auto')+ Adicionarbutton
-  div
+  <div class="card">
+    <div class="card-title">Automacao &amp; Sistemas</div>
+    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div id="services-auto">
+      <div class="pricing-service"><input type="text" value="Dashboard BI (Power BI / Looker)"><input type="number" value="300"><input type="number" value="800"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Automacao de processos (n8n / Zapier)"><input type="number" value="200"><input type="number" value="600"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Integracao de sistemas (API)"><input type="number" value="400"><input type="number" value="1200"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Formacao / consultoria (por hora)"><input type="number" value="50"><input type="number" value="80"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+    </div>
+    <button class="btn-add" onclick="addService('services-auto')">+ Adicionar</button>
+  </div>
 
-  div class=card
-    div class=card-titleCibersegurança &amp; Dadosdiv
-    div class=pricing-headerspanServiçospanspanMín (€)spanspanMáx (€)spanspanspandiv
-    div id=services-sec
-      div class=pricing-serviceinput type=text value=Auditoria de segurança básicainput type=number value=250input type=number value=600button class=btn-remove onclick=removeRow(this)×buttondiv
-      div class=pricing-serviceinput type=text value=Implementação de RGPDinput type=number value=300input type=number value=700button class=btn-remove onclick=removeRow(this)×buttondiv
-    div
-    button class=btn-add onclick=addService('services-sec')+ Adicionarbutton
-  div
+  <div class="card">
+    <div class="card-title">Ciberseguranca &amp; Dados</div>
+    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div id="services-sec">
+      <div class="pricing-service"><input type="text" value="Auditoria de seguranca basica"><input type="number" value="250"><input type="number" value="600"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+      <div class="pricing-service"><input type="text" value="Implementacao de RGPD"><input type="number" value="300"><input type="number" value="700"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
+    </div>
+    <button class="btn-add" onclick="addService('services-sec')">+ Adicionar</button>
+  </div>
 
-  div class=actions
-    button class=btn btn-primary onclick=window.print()Imprimir Tabelabutton
-  div
-div
+  <div class="actions">
+    <button class="btn btn-primary" onclick="window.print()">Imprimir Tabela</button>
+  </div>
+</div>
 
-!-- ORÇAMENTO --
-div class=section id=section-quote
-  div class=print-header
-    div
-      div style=font-family'Syne',sans-serif;font-size20px;font-weight800;color#1a1a2eIMPLEMENTIQ SYSTEMSdiv
-      div style=color#666;font-size12pxNIF PT000000000 · Setúbal, Portugal · geral@implementiq.ptdiv
-    div
-    div class=print-doc-number
-      div style=color#5a3d9a;font-size22px;font-weight800 id=print-quote-numORC-001div
-      div style=color#666;font-size12px id=print-quote-datediv
-      div style=color#666;font-size11px id=print-quote-validdiv
-    div
-  div
+<div class="section" id="section-quote">
+  <div class="print-header">
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e">IMPLEMENTIQ SYSTEMS</div>
+      <div style="color:#666;font-size:12px">NIF PT000000000 · Setubal, Portugal</div>
+    </div>
+    <div class="print-doc-number">
+      <div style="color:#5a3d9a;font-size:22px;font-weight:800" id="print-quote-num">ORC-001</div>
+      <div style="color:#666;font-size:12px" id="print-quote-date"></div>
+      <div style="color:#666;font-size:11px" id="print-quote-valid"></div>
+    </div>
+  </div>
 
-  div class=section-titleEmitir Orçamentodiv
-  div class=section-subPreencha os dados do cliente e adicione os itens do serviço.div
+  <div class="section-title">Emitir Orcamento</div>
+  <div class="section-sub">Preencha os dados do cliente e adicione os itens do servico.</div>
 
-  div class=card
-    div class=card-titleIdentificação do Documentodiv
-    div class=form-grid three
-      div class=fieldlabelNúmerolabelinput type=text id=quote-number value=ORC-001div
-      div class=fieldlabelData de Emissãolabelinput type=date id=quote-datediv
-      div class=fieldlabelVálido atélabelinput type=date id=quote-validitydiv
-    div
-  div
+  <div class="card">
+    <div class="card-title">Identificacao do Documento</div>
+    <div class="form-grid three">
+      <div class="field"><label>Numero</label><input type="text" id="quote-number" value="ORC-001"></div>
+      <div class="field"><label>Data de Emissao</label><input type="date" id="quote-date"></div>
+      <div class="field"><label>Valido ate</label><input type="date" id="quote-validity"></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleDados do Clientediv
-    div class=form-grid
-      div class=fieldlabelNome  Empresalabelinput type=text id=q-client-name placeholder=Nome ou empresadiv
-      div class=fieldlabelNIFlabelinput type=text id=q-client-nif placeholder=PT000000000div
-      div class=fieldlabelEmaillabelinput type=email id=q-client-email placeholder=cliente@empresa.ptdiv
-      div class=fieldlabelContactolabelinput type=text id=q-client-phone placeholder=+351 900 000 000div
-      div class=field style=grid-column1-1labelMoradalabelinput type=text id=q-client-address placeholder=Rua, nº, código postal, cidadediv
-    div
-  div
+  <div class="card">
+    <div class="card-title">Dados do Cliente</div>
+    <div class="form-grid">
+      <div class="field"><label>Nome / Empresa</label><input type="text" id="q-client-name" placeholder="Nome ou empresa"></div>
+      <div class="field"><label>NIF</label><input type="text" id="q-client-nif" placeholder="PT000000000"></div>
+      <div class="field"><label>Contacto WhatsApp</label><input type="text" id="q-client-phone" placeholder="+351 900 000 000"></div>
+      <div class="field"><label>Morada</label><input type="text" id="q-client-address" placeholder="Rua, numero, codigo postal, cidade"></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleItens do Orçamentodiv
-    div class=items-headerspanDescriçãospanspanQtdspanspanPreço Unit (€)spanspanTotal (€)spanspanspandiv
-    div id=quote-items
-      div class=item-row
-        input type=text placeholder=Descrição do serviço
-        input type=number value=1 min=1 oninput=calcQ(this)
-        input type=number value=0 step=0.01 oninput=calcQ(this)
-        input type=number readonly value=0.00
-        button class=btn-remove onclick=removeRow(this);recalcQ()×button
-      div
-    div
-    button class=btn-add onclick=addItemQ()+ Adicionar itembutton
-    div class=totals
-      div class=total-rowspanSubtotalspanspan id=q-subtotal0,00 €spandiv
-      div class=total-rowspanIVA (23%)spanspan id=q-iva0,00 €spandiv
-      div class=total-row grandspanTotalspanspan id=q-total0,00 €spandiv
-    div
-  div
+  <div class="card">
+    <div class="card-title">Itens do Orcamento</div>
+    <div class="items-header"><span>Descricao</span><span>Qtd</span><span>Preco Unit (EUR)</span><span>Total (EUR)</span><span></span></div>
+    <div id="quote-items">
+      <div class="item-row">
+        <input type="text" placeholder="Descricao do servico">
+        <input type="number" value="1" min="1" oninput="calcQ(this)">
+        <input type="number" value="0" step="0.01" oninput="calcQ(this)">
+        <input type="number" readonly value="0.00">
+        <button class="btn-remove" onclick="removeRow(this);recalcQ()">x</button>
+      </div>
+    </div>
+    <button class="btn-add" onclick="addItemQ()">+ Adicionar item</button>
+    <div class="totals">
+      <div class="total-row"><span>Subtotal</span><span id="q-subtotal">0,00 EUR</span></div>
+      <div class="total-row"><span>IVA (23%)</span><span id="q-iva">0,00 EUR</span></div>
+      <div class="total-row grand"><span>Total</span><span id="q-total">0,00 EUR</span></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleCondiçõesdiv
-    div class=form-grid
-      div class=fieldlabelPrazo de Entregalabelinput type=text id=q-deadline placeholder=Ex 15 dias úteis após aprovaçãodiv
-      div class=fieldlabelForma de Pagamentolabel
-        select id=q-payment
-          option50% adiantamento + 50% na entregaoption
-          option100% adiantamentooption
-          option100% na entregaoption
-          optionFaseado conforme milestonesoption
-          optionOutrooption
-        select
-      div
-      div class=field style=grid-column1-1labelObservaçõeslabeltextarea id=q-notes placeholder=Condições específicas, exclusões, notas...textareadiv
-    div
-    div style=margin-top24px;padding-top20px;border-top1px solid var(--border);displayflex;justify-contentflex-end
-      div style=text-aligncenter
-        div style=width180px;border-bottom1px solid var(--muted);padding-bottom4px;font-size11px;colorvar(--muted)Assinatura ImplementIQ Systemsdiv
-      div
-    div
-  div
+  <div class="card">
+    <div class="card-title">Condicoes</div>
+    <div class="form-grid">
+      <div class="field"><label>Prazo de Entrega</label><input type="text" id="q-deadline" placeholder="Ex: 15 dias uteis apos aprovacao"></div>
+      <div class="field"><label>Forma de Pagamento</label>
+        <select id="q-payment">
+          <option>50% adiantamento + 50% na entrega</option>
+          <option>100% adiantamento</option>
+          <option>100% na entrega</option>
+          <option>Faseado conforme milestones</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field" style="grid-column:1/-1"><label>Observacoes</label><textarea id="q-notes" placeholder="Condicoes especificas, exclusoes, notas..."></textarea></div>
+    </div>
+  </div>
 
-  div class=actions
-    button class=btn btn-primary onclick=printDoc('quote')Gerar PDF  Imprimirbutton
-    button class=btn btn-outline onclick=clearQ()Limparbutton
-  div
-div
+  <div class="actions">
+    <button class="btn btn-primary" onclick="printDoc('quote')">Gerar PDF</button>
+    <button class="btn btn-whatsapp" onclick="sendWhatsApp()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar WhatsApp
+    </button>
+    <button class="btn btn-outline" onclick="clearQ()">Limpar</button>
+  </div>
+</div>
 
-!-- RECIBO --
-div class=section id=section-receipt
-  div class=print-header
-    div
-      div style=font-family'Syne',sans-serif;font-size20px;font-weight800;color#1a1a2eIMPLEMENTIQ SYSTEMSdiv
-      div style=color#666;font-size12pxNIF PT000000000 · Setúbal, Portugal · geral@implementiq.ptdiv
-    div
-    div class=print-doc-number
-      div style=color#5a3d9a;font-size22px;font-weight800 id=print-rec-numREC-001div
-      div style=color#666;font-size12px id=print-rec-datediv
-      div style=margin-top6px;displayinline-block;padding3px 10px;border-radius20px;font-size11px;font-weight600;background#e8f8ed;color#2d8a52;border1px solid #a8d5b8PAGOdiv
-    div
-  div
+<div class="section" id="section-receipt">
+  <div class="print-header">
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e">IMPLEMENTIQ SYSTEMS</div>
+      <div style="color:#666;font-size:12px">NIF PT000000000 · Setubal, Portugal</div>
+    </div>
+    <div class="print-doc-number">
+      <div style="color:#5a3d9a;font-size:22px;font-weight:800" id="print-rec-num">REC-001</div>
+      <div style="color:#666;font-size:12px" id="print-rec-date"></div>
+      <div style="margin-top:6px;display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#e8f8ed;color:#2d8a52;border:1px solid #a8d5b8">PAGO</div>
+    </div>
+  </div>
 
-  div class=section-titleEmitir Recibodiv
-  div class=section-subConfirmação de pagamento recebido. Emita uma cópia para o cliente e guarde outra para o arquivo.div
+  <div class="section-title">Emitir Recibo</div>
+  <div class="section-sub">Confirmacao de pagamento recebido.</div>
 
-  div class=card
-    div class=card-titleIdentificação do Recibodiv
-    div class=form-grid three
-      div class=fieldlabelNúmero do Recibolabelinput type=text id=rec-number value=REC-001div
-      div class=fieldlabelData de Emissãolabelinput type=date id=rec-datediv
-      div class=fieldlabelRef. Orçamentolabelinput type=text id=rec-ref placeholder=ORC-001 (opcional)div
-    div
-  div
+  <div class="card">
+    <div class="card-title">Identificacao do Recibo</div>
+    <div class="form-grid three">
+      <div class="field"><label>Numero do Recibo</label><input type="text" id="rec-number" value="REC-001"></div>
+      <div class="field"><label>Data de Emissao</label><input type="date" id="rec-date"></div>
+      <div class="field"><label>Ref. Orcamento</label><input type="text" id="rec-ref" placeholder="ORC-001 (opcional)"></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleDados do Clientediv
-    div class=form-grid
-      div class=fieldlabelNome  Empresalabelinput type=text id=r-client-name placeholder=Nome ou empresadiv
-      div class=fieldlabelNIFlabelinput type=text id=r-client-nif placeholder=PT000000000div
-      div class=fieldlabelEmaillabelinput type=email id=r-client-email placeholder=cliente@empresa.ptdiv
-      div class=fieldlabelContactolabelinput type=text id=r-client-phone placeholder=+351 900 000 000div
-    div
-  div
+  <div class="card">
+    <div class="card-title">Dados do Cliente</div>
+    <div class="form-grid">
+      <div class="field"><label>Nome / Empresa</label><input type="text" id="r-client-name" placeholder="Nome ou empresa"></div>
+      <div class="field"><label>NIF</label><input type="text" id="r-client-nif" placeholder="PT000000000"></div>
+      <div class="field"><label>Contacto WhatsApp</label><input type="text" id="r-client-phone" placeholder="+351 900 000 000"></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleItens Pagosdiv
-    div class=items-headerspanDescriçãospanspanQtdspanspanPreço Unit (€)spanspanTotal (€)spanspanspandiv
-    div id=receipt-items
-      div class=item-row
-        input type=text placeholder=Descrição do serviço prestado
-        input type=number value=1 min=1 oninput=calcR(this)
-        input type=number value=0 step=0.01 oninput=calcR(this)
-        input type=number readonly value=0.00
-        button class=btn-remove onclick=removeRow(this);recalcR()×button
-      div
-    div
-    button class=btn-add onclick=addItemR()+ Adicionar itembutton
-    div class=totals
-      div class=total-rowspanSubtotalspanspan id=r-subtotal0,00 €spandiv
-      div class=total-rowspanIVA (23%)spanspan id=r-iva0,00 €spandiv
-      div class=total-row grandspanTotal Recebidospanspan id=r-total0,00 €spandiv
-    div
-  div
+  <div class="card">
+    <div class="card-title">Itens Pagos</div>
+    <div class="items-header"><span>Descricao</span><span>Qtd</span><span>Preco Unit (EUR)</span><span>Total (EUR)</span><span></span></div>
+    <div id="receipt-items">
+      <div class="item-row">
+        <input type="text" placeholder="Descricao do servico prestado">
+        <input type="number" value="1" min="1" oninput="calcR(this)">
+        <input type="number" value="0" step="0.01" oninput="calcR(this)">
+        <input type="number" readonly value="0.00">
+        <button class="btn-remove" onclick="removeRow(this);recalcR()">x</button>
+      </div>
+    </div>
+    <button class="btn-add" onclick="addItemR()">+ Adicionar item</button>
+    <div class="totals">
+      <div class="total-row"><span>Subtotal</span><span id="r-subtotal">0,00 EUR</span></div>
+      <div class="total-row"><span>IVA (23%)</span><span id="r-iva">0,00 EUR</span></div>
+      <div class="total-row grand"><span>Total Recebido</span><span id="r-total">0,00 EUR</span></div>
+    </div>
+  </div>
 
-  div class=card
-    div class=card-titleDetalhes do Pagamentodiv
-    div class=form-grid three
-      div class=fieldlabelForma de Pagamentolabel
-        select id=r-payment-method
-          optionTransferência Bancáriaoption
-          optionMB Wayoption
-          optionMultibancooption
-          optionNumeráriooption
-          optionChequeoption
-          optionPayPaloption
-        select
-      div
-      div class=fieldlabelData do Pagamentolabelinput type=date id=r-payment-datediv
-      div class=fieldlabelReferêncialabelinput type=text id=r-payment-ref placeholder=Ref. MB, IBAN, etc.div
-    div
-    div class=dividerdiv
-    div class=fieldlabelObservaçõeslabeltextarea id=r-notes placeholder=Notas adicionais sobre o pagamento...textareadiv
-    div style=margin-top24px;padding-top20px;border-top1px solid var(--border);displayflex;justify-contentspace-between;align-itemsflex-end
-      div style=font-size12px;colorvar(--muted)
-        Emitido por strong style=colorvar(--text)ImplementIQ Systemsstrongbr
-        NIF PT000000000 · Setúbal, Portugal
-      div
-      div style=text-aligncenter
-        div style=width180px;border-bottom1px solid var(--muted);padding-bottom4px;font-size11px;colorvar(--muted)Assinatura  Carimbodiv
-      div
-    div
-  div
+  <div class="card">
+    <div class="card-title">Detalhes do Pagamento</div>
+    <div class="form-grid three">
+      <div class="field"><label>Forma de Pagamento</label>
+        <select id="r-payment-method">
+          <option>Transferencia Bancaria</option>
+          <option>MB Way</option>
+          <option>Multibanco</option>
+          <option>Numerario</option>
+          <option>Cheque</option>
+          <option>PayPal</option>
+        </select>
+      </div>
+      <div class="field"><label>Data do Pagamento</label><input type="date" id="r-payment-date"></div>
+      <div class="field"><label>Referencia</label><input type="text" id="r-payment-ref" placeholder="Ref. MB, IBAN, etc."></div>
+    </div>
+    <div class="divider"></div>
+    <div class="field"><label>Observacoes</label><textarea id="r-notes" placeholder="Notas adicionais..."></textarea></div>
+  </div>
 
-  div class=actions
-    button class=btn btn-primary onclick=printDoc('receipt')Gerar PDF  Imprimirbutton
-    button class=btn btn-outline onclick=clearR()Limparbutton
-  div
-div
+  <div class="actions">
+    <button class="btn btn-primary" onclick="printDoc('receipt')">Gerar PDF</button>
+    <button class="btn btn-outline" onclick="clearR()">Limpar</button>
+  </div>
+</div>
 
-div
+</div>
 
-script
+<script>
 function showTab(name, el) {
-  document.querySelectorAll('.tab').forEach(t = t.classList.remove('active'));
-  document.querySelectorAll('.section').forEach(s = s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('section-' + name).classList.add('active');
 }
 
- Init dates
-window.addEventListener('DOMContentLoaded', () = {
-  const today = new Date().toISOString().split('T')[0];
-  const v = new Date(); v.setDate(v.getDate()+30);
-  const valid = v.toISOString().split('T')[0];
-  ['quote-date','rec-date','r-payment-date'].forEach(id = { const el=document.getElementById(id); if(el) el.value=today; });
-  const qv = document.getElementById('quote-validity'); if(qv) qv.value = valid;
+window.addEventListener('DOMContentLoaded', function() {
+  var today = new Date().toISOString().split('T')[0];
+  var v = new Date(); v.setDate(v.getDate()+30);
+  var valid = v.toISOString().split('T')[0];
+  ['quote-date','rec-date','r-payment-date'].forEach(function(id) {
+    var el = document.getElementById(id); if(el) el.value = today;
+  });
+  var qv = document.getElementById('quote-validity'); if(qv) qv.value = valid;
 });
 
 function removeRow(btn) { btn.closest('.item-row,.pricing-service').remove(); }
 
 function addService(id) {
-  const d = document.createElement('div'); d.className='pricing-service';
-  d.innerHTML=`input type=text placeholder=Nome do serviçoinput type=number value=0input type=number value=0button class=btn-remove onclick=removeRow(this)×button`;
+  var d = document.createElement('div'); d.className='pricing-service';
+  d.innerHTML='<input type="text" placeholder="Nome do servico"><input type="number" value="0"><input type="number" value="0"><button class="btn-remove" onclick="removeRow(this)">x</button>';
   document.getElementById(id).appendChild(d);
 }
 
 function addItemQ() {
-  const d = document.createElement('div'); d.className='item-row';
-  d.innerHTML=`input type=text placeholder=Descrição do serviçoinput type=number value=1 min=1 oninput=calcQ(this)input type=number value=0 step=0.01 oninput=calcQ(this)input type=number readonly value=0.00button class=btn-remove onclick=removeRow(this);recalcQ()×button`;
+  var d = document.createElement('div'); d.className='item-row';
+  d.innerHTML='<input type="text" placeholder="Descricao do servico"><input type="number" value="1" min="1" oninput="calcQ(this)"><input type="number" value="0" step="0.01" oninput="calcQ(this)"><input type="number" readonly value="0.00"><button class="btn-remove" onclick="removeRow(this);recalcQ()">x</button>';
   document.getElementById('quote-items').appendChild(d);
 }
 
 function addItemR() {
-  const d = document.createElement('div'); d.className='item-row';
-  d.innerHTML=`input type=text placeholder=Descrição do serviço prestadoinput type=number value=1 min=1 oninput=calcR(this)input type=number value=0 step=0.01 oninput=calcR(this)input type=number readonly value=0.00button class=btn-remove onclick=removeRow(this);recalcR()×button`;
+  var d = document.createElement('div'); d.className='item-row';
+  d.innerHTML='<input type="text" placeholder="Descricao do servico prestado"><input type="number" value="1" min="1" oninput="calcR(this)"><input type="number" value="0" step="0.01" oninput="calcR(this)"><input type="number" readonly value="0.00"><button class="btn-remove" onclick="removeRow(this);recalcR()">x</button>';
   document.getElementById('receipt-items').appendChild(d);
 }
 
 function calcQ(inp) {
-  const row=inp.closest('.item-row'), ins=row.querySelectorAll('input[type=number]');
-  ins[2].value=((parseFloat(ins[0].value)0)(parseFloat(ins[1].value)0)).toFixed(2);
+  var row=inp.closest('.item-row'), ins=row.querySelectorAll('input[type=number]');
+  ins[2].value=((parseFloat(ins[0].value)||0)*(parseFloat(ins[1].value)||0)).toFixed(2);
   recalcQ();
 }
+
 function calcR(inp) {
-  const row=inp.closest('.item-row'), ins=row.querySelectorAll('input[type=number]');
-  ins[2].value=((parseFloat(ins[0].value)0)(parseFloat(ins[1].value)0)).toFixed(2);
+  var row=inp.closest('.item-row'), ins=row.querySelectorAll('input[type=number]');
+  ins[2].value=((parseFloat(ins[0].value)||0)*(parseFloat(ins[1].value)||0)).toFixed(2);
   recalcR();
 }
 
 function recalcQ() {
-  let s=0;
-  document.querySelectorAll('#quote-items .item-row').forEach(r={const ins=r.querySelectorAll('input[type=number]');s+=parseFloat(ins[2].value)0;});
+  var s=0;
+  document.querySelectorAll('#quote-items .item-row').forEach(function(r){
+    var ins=r.querySelectorAll('input[type=number]'); s+=parseFloat(ins[2].value)||0;
+  });
   document.getElementById('q-subtotal').textContent=fmt(s);
-  document.getElementById('q-iva').textContent=fmt(s0.23);
-  document.getElementById('q-total').textContent=fmt(s1.23);
-}
-function recalcR() {
-  let s=0;
-  document.querySelectorAll('#receipt-items .item-row').forEach(r={const ins=r.querySelectorAll('input[type=number]');s+=parseFloat(ins[2].value)0;});
-  document.getElementById('r-subtotal').textContent=fmt(s);
-  document.getElementById('r-iva').textContent=fmt(s0.23);
-  document.getElementById('r-total').textContent=fmt(s1.23);
+  document.getElementById('q-iva').textContent=fmt(s*0.23);
+  document.getElementById('q-total').textContent=fmt(s*1.23);
 }
 
-function fmt(n) { return n.toLocaleString('pt-PT',{minimumFractionDigits2,maximumFractionDigits2})+' €'; }
-function fmtDate(v) { return v  new Date(v).toLocaleDateString('pt-PT')  ''; }
+function recalcR() {
+  var s=0;
+  document.querySelectorAll('#receipt-items .item-row').forEach(function(r){
+    var ins=r.querySelectorAll('input[type=number]'); s+=parseFloat(ins[2].value)||0;
+  });
+  document.getElementById('r-subtotal').textContent=fmt(s);
+  document.getElementById('r-iva').textContent=fmt(s*0.23);
+  document.getElementById('r-total').textContent=fmt(s*1.23);
+}
+
+function fmt(n) { return n.toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2})+' EUR'; }
+function fmtDate(v) { return v ? new Date(v).toLocaleDateString('pt-PT') : ''; }
+
+function sendWhatsApp() {
+  var num = document.getElementById('quote-number').value;
+  var client = document.getElementById('q-client-name').value || 'Cliente';
+  var date = fmtDate(document.getElementById('quote-date').value);
+  var validity = fmtDate(document.getElementById('quote-validity').value);
+  var deadline = document.getElementById('q-deadline').value || '-';
+  var payment = document.getElementById('q-payment').value;
+  var notes = document.getElementById('q-notes').value;
+  var total = document.getElementById('q-total').textContent;
+  var items = '';
+  document.querySelectorAll('#quote-items .item-row').forEach(function(r) {
+    var desc = r.querySelector('input[type=text]').value;
+    var ins = r.querySelectorAll('input[type=number]');
+    var qty = ins[0].value;
+    var price = parseFloat(ins[1].value).toLocaleString('pt-PT',{minimumFractionDigits:2});
+    var tot = parseFloat(ins[2].value).toLocaleString('pt-PT',{minimumFractionDigits:2});
+    if(desc) items += '- ' + desc + ' (' + qty + 'x ' + price + ' EUR) = ' + tot + ' EUR\n';
+  });
+  var msg = 'ORCAMENTO ' + num + ' - ImplementIQ Systems\n';
+  msg += 'Data: ' + date + ' | Valido ate: ' + validity + '\n\n';
+  msg += 'Cliente: ' + client + '\n\n';
+  msg += 'Servicos:\n' + items + '\n';
+  msg += 'Total (IVA incl.): ' + total + '\n\n';
+  msg += 'Prazo de entrega: ' + deadline + '\n';
+  msg += 'Pagamento: ' + payment + '\n';
+  if(notes) msg += '\nNotas: ' + notes + '\n';
+  msg += '\nImplementIQ Systems - Setubal, Portugal';
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
 
 function printDoc(type) {
   if(type==='quote') {
     document.getElementById('print-quote-num').textContent = document.getElementById('quote-number').value;
-    document.getElementById('print-quote-date').textContent = 'Emissão '+fmtDate(document.getElementById('quote-date').value);
-    document.getElementById('print-quote-valid').textContent = 'Válido até '+fmtDate(document.getElementById('quote-validity').value);
+    document.getElementById('print-quote-date').textContent = 'Emissao ' + fmtDate(document.getElementById('quote-date').value);
+    document.getElementById('print-quote-valid').textContent = 'Valido ate ' + fmtDate(document.getElementById('quote-validity').value);
   } else {
     document.getElementById('print-rec-num').textContent = document.getElementById('rec-number').value;
-    document.getElementById('print-rec-date').textContent = 'Emissão '+fmtDate(document.getElementById('rec-date').value);
+    document.getElementById('print-rec-date').textContent = 'Emissao ' + fmtDate(document.getElementById('rec-date').value);
   }
   window.print();
 }
 
 function clearQ() {
-  if(!confirm('Limpar todos os campos do orçamento')) return;
-  ['q-client-name','q-client-nif','q-client-email','q-client-phone','q-client-address','q-deadline','q-notes'].forEach(id={const el=document.getElementById(id);if(el)el.value='';});
+  if(!confirm('Limpar todos os campos do orcamento?')) return;
+  ['q-client-name','q-client-nif','q-client-phone','q-client-address','q-deadline','q-notes'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
   document.getElementById('quote-items').innerHTML=''; addItemQ(); recalcQ();
 }
+
 function clearR() {
-  if(!confirm('Limpar todos os campos do recibo')) return;
-  ['r-client-name','r-client-nif','r-client-email','r-client-phone','r-payment-ref','r-notes','rec-ref'].forEach(id={const el=document.getElementById(id);if(el)el.value='';});
+  if(!confirm('Limpar todos os campos do recibo?')) return;
+  ['r-client-name','r-client-nif','r-client-phone','r-payment-ref','r-notes','rec-ref'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
   document.getElementById('receipt-items').innerHTML=''; addItemR(); recalcR();
 }
-script
-body
-html
+</script>
+</body>
+</html>
