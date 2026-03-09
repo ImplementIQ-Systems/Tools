@@ -4,150 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ImplementIQ — Ferramentas Internas</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --dark: #1a1a2e;
-  --darker: #12121f;
-  --card: #1e1e35;
-  --card2: #252540;
-  --purple: #7c5cbf;
-  --purple-light: #9b7de0;
-  --purple-dim: rgba(124,92,191,0.15);
-  --text: #e8e8f0;
-  --muted: #8888a8;
-  --border: rgba(124,92,191,0.2);
-  --white: #ffffff;
+  --color-sand: #f8f7f4;
+  --color-sand-dark: #e8e6e1;
+  --color-navy: #6C5CE7;
+  --color-navy-light: #8B7CF6;
+  --color-charcoal: #374151;
+  --color-slate: #64748b;
+  --color-ash: #9ca3af;
+  --color-white: #ffffff;
+  --color-black: #111827;
+  --font-serif: 'Merriweather', serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px -2px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.1);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--darker); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+body { font-family: var(--font-sans); background: var(--color-sand); color: var(--color-charcoal); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-header { background: var(--dark); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
-.brand h1 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
-.brand span { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
-.header-badge { margin-left: auto; font-size: 11px; color: var(--purple-light); background: var(--purple-dim); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
+/* HEADER */
+header {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.brand-name { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--color-black); letter-spacing: -0.01em; }
+.brand-sub { font-size: 0.75rem; color: var(--color-slate); font-weight: 400; }
+.header-badge { margin-left: auto; font-size: 0.7rem; color: var(--color-navy); background: rgba(108,92,231,0.08); border: 1px solid rgba(108,92,231,0.2); padding: 0.3rem 0.875rem; border-radius: 100px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
 
-.tabs { display: flex; padding: 32px 40px 0; border-bottom: 1px solid var(--border); }
-.tab { padding: 12px 28px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-.tab:hover { color: var(--text); }
-.tab.active { color: var(--purple-light); border-bottom-color: var(--purple); }
+/* TABS */
+.tabs { display: flex; padding: 2rem 2rem 0; gap: 0; background: var(--color-white); border-bottom: 1px solid var(--color-sand-dark); }
+.tab { padding: 0.875rem 1.75rem; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-ash); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.tab:hover { color: var(--color-charcoal); }
+.tab.active { color: var(--color-navy); border-bottom-color: var(--color-navy); }
 
-.content { padding: 40px; max-width: 960px; margin: 0 auto; }
+/* CONTENT */
+.content { padding: 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
 .section { display: none; }
 .section.active { display: block; }
 
-.section-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--white); }
-.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+.section-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-black); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+.section-sub { font-size: 0.875rem; color: var(--color-slate); margin-bottom: 2rem; line-height: 1.6; }
 
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
-.card-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--purple-light); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-.card-title::before { content: ''; display: block; width: 3px; height: 14px; background: var(--purple); border-radius: 2px; }
+/* NOTICE */
+.notice { background: rgba(108,92,231,0.06); border: 1px solid rgba(108,92,231,0.15); border-radius: var(--radius-sm); padding: 0.875rem 1.25rem; font-size: 0.8rem; color: var(--color-slate); margin-bottom: 1.5rem; }
+.notice strong { color: var(--color-navy); }
 
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* CARD */
+.card { background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-md); padding: 2rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm); }
+.card-title { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-navy); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.card-title::before { content: ''; display: block; width: 3px; height: 12px; background: var(--color-navy); border-radius: 2px; opacity: 0.5; }
+
+/* FORM */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-.field input, .field select, .field textarea { background: var(--darker); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple); }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 0.7rem; font-weight: 600; color: var(--color-ash); text-transform: uppercase; letter-spacing: 0.08em; }
+.field input, .field select, .field textarea {
+  background: var(--color-sand);
+  border: 1px solid var(--color-sand-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.625rem 0.875rem;
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.08);
+  background: var(--color-white);
+}
 .field textarea { resize: vertical; min-height: 80px; }
-.field select option { background: var(--darker); }
+.field select option { background: var(--color-white); }
 
-.items-header { display: grid; grid-template-columns: 2fr 80px 100px 100px 36px; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
-.item-row { display: grid; grid-template-columns: 2fr 80px 100px 100px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
-.item-row input { background: var(--darker); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; width: 100%; transition: border-color 0.2s; }
-.item-row input:focus { border-color: var(--purple); }
-.item-row input[readonly] { background: var(--card2); color: var(--muted); }
+/* ITEMS TABLE */
+.items-header { display: grid; grid-template-columns: 2fr 70px 110px 110px 36px; gap: 8px; padding: 0.5rem 0; font-size: 0.65rem; color: var(--color-ash); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--color-sand-dark); margin-bottom: 0.75rem; }
+.item-row { display: grid; grid-template-columns: 2fr 70px 110px 110px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
+.item-row input { background: var(--color-sand); border: 1px solid var(--color-sand-dark); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; color: var(--color-charcoal); font-family: var(--font-sans); font-size: 0.875rem; outline: none; width: 100%; transition: border-color 0.2s; }
+.item-row input:focus { border-color: var(--color-navy); background: var(--color-white); }
+.item-row input[readonly] { background: var(--color-sand-dark); color: var(--color-slate); font-weight: 600; }
 
-.btn-remove { background: rgba(220,50,50,0.1); border: 1px solid rgba(220,50,50,0.2); color: #e05555; border-radius: 6px; width: 32px; height: 32px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.btn-remove:hover { background: rgba(220,50,50,0.2); }
-
-.totals { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-.total-row { display: flex; gap: 24px; font-size: 13px; }
-.total-row span:first-child { color: var(--muted); }
-.total-row span:last-child { min-width: 100px; text-align: right; font-weight: 500; }
-.total-row.grand { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
-
-.actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
-.btn { padding: 12px 24px; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.2s; }
-.btn-primary { background: var(--purple); color: var(--white); }
-.btn-primary:hover { background: var(--purple-light); }
-.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
-.btn-outline:hover { border-color: var(--purple); color: var(--purple-light); }
-.btn-whatsapp { background: #25D366; color: white; display: flex; align-items: center; gap: 8px; }
-.btn-whatsapp:hover { background: #1ebe5a; }
-.btn-add { background: var(--purple-dim); border: 1px dashed var(--purple); color: var(--purple-light); padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
-.btn-add:hover { background: rgba(124,92,191,0.25); }
-
-.pricing-header { display: grid; grid-template-columns: 1fr 120px 120px 36px; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+/* PRICING TABLE */
+.pricing-header { display: grid; grid-template-columns: 1fr 120px 120px 36px; gap: 8px; padding: 0.5rem 0; font-size: 0.65rem; color: var(--color-ash); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--color-sand-dark); margin-bottom: 0.75rem; }
 .pricing-service { display: grid; grid-template-columns: 1fr 120px 120px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
-.pricing-service input { background: var(--darker); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; width: 100%; transition: border-color 0.2s; }
-.pricing-service input:focus { border-color: var(--purple); }
+.pricing-service input { background: var(--color-sand); border: 1px solid var(--color-sand-dark); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; color: var(--color-charcoal); font-family: var(--font-sans); font-size: 0.875rem; outline: none; width: 100%; transition: border-color 0.2s; }
+.pricing-service input:focus { border-color: var(--color-navy); background: var(--color-white); }
 
-.divider { height: 1px; background: var(--border); margin: 24px 0; }
-.notice { background: var(--purple-dim); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 12px; color: var(--muted); margin-bottom: 24px; }
-.notice strong { color: var(--purple-light); }
+/* BUTTONS */
+.btn-remove { background: rgba(220,50,50,0.06); border: 1px solid rgba(220,50,50,0.15); color: #dc3545; border-radius: var(--radius-sm); width: 32px; height: 32px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.btn-remove:hover { background: rgba(220,50,50,0.12); }
+.btn-add { background: transparent; border: 1.5px dashed var(--color-sand-dark); color: var(--color-slate); padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 500; cursor: pointer; margin-top: 0.75rem; transition: all 0.2s; font-family: var(--font-sans); }
+.btn-add:hover { border-color: var(--color-navy); color: var(--color-navy); background: rgba(108,92,231,0.04); }
+
+.actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.btn { padding: 0.75rem 1.5rem; border-radius: 100px; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; border: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-primary { background: var(--color-black); color: white; box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--color-navy); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-outline { background: transparent; border: 1.5px solid var(--color-sand-dark); color: var(--color-slate); }
+.btn-outline:hover { border-color: var(--color-charcoal); color: var(--color-charcoal); }
+.btn-whatsapp { background: #25D366; color: white; box-shadow: var(--shadow-md); }
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-1px); }
+
+/* TOTALS */
+.totals { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--color-sand-dark); }
+.total-row { display: flex; gap: 2rem; font-size: 0.875rem; }
+.total-row span:first-child { color: var(--color-ash); }
+.total-row span:last-child { min-width: 110px; text-align: right; font-weight: 500; color: var(--color-charcoal); }
+.total-row.grand { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; }
+.total-row.grand span:last-child { color: var(--color-black); }
+
+.divider { height: 1px; background: var(--color-sand-dark); margin: 1.5rem 0; }
+
+/* PRINT HEADER */
 .print-header { display: none; }
 
+/* MOBILE */
 @media (max-width: 640px) {
-  header { padding: 14px 16px; }
+  header { padding: 0.75rem 1rem; }
   .header-badge { display: none; }
-  .tabs { padding: 16px 16px 0; overflow-x: auto; }
-  .tab { padding: 10px 14px; font-size: 11px; white-space: nowrap; }
-  .content { padding: 20px 16px; }
-  .card { padding: 18px 14px; }
-  .section-title { font-size: 18px; }
+  .tabs { padding: 1rem 1rem 0; overflow-x: auto; }
+  .tab { padding: 0.75rem 1rem; font-size: 0.7rem; white-space: nowrap; }
+  .content { padding: 1.5rem 1rem; }
+  .card { padding: 1.25rem; }
+  .section-title { font-size: 1.25rem; }
   .form-grid, .form-grid.three { grid-template-columns: 1fr; }
   .items-header { display: none; }
-  .item-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .item-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-sand-dark); }
   .item-row input:first-child { grid-column: 1 / -1; }
-  .item-row input[readonly] { background: var(--card2); color: var(--purple-light); font-weight: 700; }
   .item-row .btn-remove { grid-column: 2; justify-self: end; }
   .pricing-header { display: none; }
-  .pricing-service { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .pricing-service { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-sand-dark); }
   .pricing-service input:first-child { grid-column: 1 / -1; }
   .pricing-service .btn-remove { grid-column: 2; justify-self: end; }
   .actions { flex-direction: column; }
-  .btn { width: 100%; text-align: center; justify-content: center; }
+  .btn { width: 100%; justify-content: center; }
   .totals { align-items: stretch; }
   .total-row { justify-content: space-between; }
 }
 
 @media print {
-  body { background: white !important; color: black !important; }
+  body { background: white !important; }
   header, .tabs, .actions, .btn-remove, .btn-add, #section-pricing { display: none !important; }
   .section { display: block !important; }
   .section:not(.active) { display: none !important; }
-  .card { background: white !important; border: 1px solid #ddd !important; color: black !important; break-inside: avoid; }
-  .card-title { color: #5a3d9a !important; }
-  .field label { color: #666 !important; }
-  .field input, .field select, .field textarea { background: white !important; border: 1px solid #ccc !important; color: black !important; }
-  .item-row input { background: white !important; border: 1px solid #ccc !important; color: black !important; }
-  .total-row span:first-child { color: #666 !important; }
-  .total-row.grand { color: black !important; }
-  .section-title { color: black !important; }
+  .card { box-shadow: none !important; border: 1px solid #e5e7eb !important; break-inside: avoid; }
+  .field input, .field select, .field textarea { background: white !important; border: 1px solid #d1d5db !important; }
+  .item-row input { background: white !important; border: 1px solid #d1d5db !important; }
+  .item-row input[readonly] { background: #f9fafb !important; }
   .section-sub, .notice { display: none !important; }
-  .print-header { display: flex !important; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #5a3d9a; }
+  .print-header { display: flex !important; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--color-navy); }
   .print-doc-number { text-align: right; }
-  .totals { border-top: 1px solid #ccc !important; }
-  .items-header { border-bottom: 1px solid #ccc !important; }
+  .items-header { display: grid !important; }
+  .pricing-service { grid-template-columns: 1fr 120px 120px 36px !important; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <svg width="42" height="42" viewBox="0 0 100 100" fill="none">
-    <circle cx="28" cy="18" r="8" fill="#6b6b8a"/>
-    <rect x="20" y="30" width="16" height="52" rx="4" fill="#6b6b8a"/>
-    <rect x="44" y="18" width="48" height="64" rx="14" fill="#6b6b8a"/>
-    <rect x="56" y="30" width="24" height="40" rx="6" fill="#12121f"/>
-    <rect x="56" y="62" width="36" height="12" rx="4" fill="#7c5cbf" transform="rotate(-20 56 62)"/>
+  <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+    <circle cx="28" cy="18" r="8" fill="#6C5CE7" opacity="0.4"/>
+    <rect x="20" y="30" width="16" height="52" rx="4" fill="#6C5CE7" opacity="0.4"/>
+    <rect x="44" y="18" width="48" height="64" rx="14" fill="#6C5CE7" opacity="0.3"/>
+    <rect x="56" y="30" width="24" height="40" rx="6" fill="#f8f7f4"/>
+    <rect x="56" y="62" width="36" height="12" rx="4" fill="#6C5CE7" transform="rotate(-20 56 62)"/>
   </svg>
-  <div class="brand">
-    <h1>ImplementIQ</h1>
-    <span>Systems</span>
+  <div>
+    <div class="brand-name">ImplementIQ Systems</div>
+    <div class="brand-sub">Ferramentas Internas</div>
   </div>
-  <div class="header-badge">Ferramentas Internas</div>
+  <div class="header-badge">Interno</div>
 </header>
 
 <div class="tabs">
@@ -158,43 +201,44 @@ header { background: var(--dark); border-bottom: 1px solid var(--border); paddin
 
 <div class="content">
 
+<!-- PRECOS -->
 <div class="section active" id="section-pricing">
   <div class="section-title">Tabela de Precos</div>
   <div class="section-sub">Referencia interna de servicos e valores base para orcamentacao.</div>
-  <div class="notice"><strong>Uso interno.</strong> Estes valores servem de referencia ao emitir orcamentos.</div>
+  <div class="notice"><strong>Uso interno.</strong> Estes valores servem de referencia ao emitir orcamentos ao cliente.</div>
 
   <div class="card">
     <div class="card-title">Web &amp; Presenca Digital</div>
-    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div class="pricing-header"><span>Servico</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
     <div id="services-web">
       <div class="pricing-service"><input type="text" value="Landing Page simples"><input type="number" value="150"><input type="number" value="350"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Website institucional (ate 5 paginas)"><input type="number" value="400"><input type="number" value="800"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Website com CMS (WordPress)"><input type="number" value="600"><input type="number" value="1200"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Loja online (e-commerce basico)"><input type="number" value="900"><input type="number" value="2000"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
     </div>
-    <button class="btn-add" onclick="addService('services-web')">+ Adicionar</button>
+    <button class="btn-add" onclick="addService('services-web')">+ Adicionar servico</button>
   </div>
 
   <div class="card">
     <div class="card-title">Automacao &amp; Sistemas</div>
-    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div class="pricing-header"><span>Servico</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
     <div id="services-auto">
       <div class="pricing-service"><input type="text" value="Dashboard BI (Power BI / Looker)"><input type="number" value="300"><input type="number" value="800"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Automacao de processos (n8n / Zapier)"><input type="number" value="200"><input type="number" value="600"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Integracao de sistemas (API)"><input type="number" value="400"><input type="number" value="1200"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Formacao / consultoria (por hora)"><input type="number" value="50"><input type="number" value="80"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
     </div>
-    <button class="btn-add" onclick="addService('services-auto')">+ Adicionar</button>
+    <button class="btn-add" onclick="addService('services-auto')">+ Adicionar servico</button>
   </div>
 
   <div class="card">
     <div class="card-title">Ciberseguranca &amp; Dados</div>
-    <div class="pricing-header"><span>Servicos</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
+    <div class="pricing-header"><span>Servico</span><span>Min (EUR)</span><span>Max (EUR)</span><span></span></div>
     <div id="services-sec">
       <div class="pricing-service"><input type="text" value="Auditoria de seguranca basica"><input type="number" value="250"><input type="number" value="600"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
       <div class="pricing-service"><input type="text" value="Implementacao de RGPD"><input type="number" value="300"><input type="number" value="700"><button class="btn-remove" onclick="removeRow(this)">x</button></div>
     </div>
-    <button class="btn-add" onclick="addService('services-sec')">+ Adicionar</button>
+    <button class="btn-add" onclick="addService('services-sec')">+ Adicionar servico</button>
   </div>
 
   <div class="actions">
@@ -202,21 +246,22 @@ header { background: var(--dark); border-bottom: 1px solid var(--border); paddin
   </div>
 </div>
 
+<!-- ORCAMENTO -->
 <div class="section" id="section-quote">
   <div class="print-header">
     <div>
-      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e">IMPLEMENTIQ SYSTEMS</div>
-      <div style="color:#666;font-size:12px">NIF PT000000000 · Setubal, Portugal</div>
+      <div style="font-family:'Merriweather',serif;font-size:1.1rem;font-weight:700;color:#111827">ImplementIQ Systems</div>
+      <div style="color:#64748b;font-size:0.8rem;margin-top:0.25rem">NIF PT000000000 · Setubal, Portugal</div>
     </div>
     <div class="print-doc-number">
-      <div style="color:#5a3d9a;font-size:22px;font-weight:800" id="print-quote-num">ORC-001</div>
-      <div style="color:#666;font-size:12px" id="print-quote-date"></div>
-      <div style="color:#666;font-size:11px" id="print-quote-valid"></div>
+      <div style="color:#6C5CE7;font-size:1.25rem;font-weight:700" id="print-quote-num">ORC-001</div>
+      <div style="color:#64748b;font-size:0.8rem" id="print-quote-date"></div>
+      <div style="color:#64748b;font-size:0.75rem" id="print-quote-valid"></div>
     </div>
   </div>
 
   <div class="section-title">Emitir Orcamento</div>
-  <div class="section-sub">Preencha os dados do cliente e adicione os itens do servico.</div>
+  <div class="section-sub">Preencha os dados do cliente e adicione os servicos a orcar.</div>
 
   <div class="card">
     <div class="card-title">Identificacao do Documento</div>
@@ -238,7 +283,7 @@ header { background: var(--dark); border-bottom: 1px solid var(--border); paddin
   </div>
 
   <div class="card">
-    <div class="card-title">Itens do Orcamento</div>
+    <div class="card-title">Servicos</div>
     <div class="items-header"><span>Descricao</span><span>Qtd</span><span>Preco Unit (EUR)</span><span>Total (EUR)</span><span></span></div>
     <div id="quote-items">
       <div class="item-row">
@@ -272,33 +317,39 @@ header { background: var(--dark); border-bottom: 1px solid var(--border); paddin
       </div>
       <div class="field" style="grid-column:1/-1"><label>Observacoes</label><textarea id="q-notes" placeholder="Condicoes especificas, exclusoes, notas..."></textarea></div>
     </div>
+    <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--color-sand-dark);display:flex;justify-content:flex-end">
+      <div style="text-align:center">
+        <div style="width:200px;border-bottom:1px solid var(--color-ash);padding-bottom:4px;font-size:0.7rem;color:var(--color-ash);letter-spacing:0.05em">ASSINATURA IMPLEMENTIQ SYSTEMS</div>
+      </div>
+    </div>
   </div>
 
   <div class="actions">
     <button class="btn btn-primary" onclick="printDoc('quote')">Gerar PDF</button>
     <button class="btn btn-whatsapp" onclick="sendWhatsApp()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Enviar WhatsApp
     </button>
     <button class="btn btn-outline" onclick="clearQ()">Limpar</button>
   </div>
 </div>
 
+<!-- RECIBO -->
 <div class="section" id="section-receipt">
   <div class="print-header">
     <div>
-      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e">IMPLEMENTIQ SYSTEMS</div>
-      <div style="color:#666;font-size:12px">NIF PT000000000 · Setubal, Portugal</div>
+      <div style="font-family:'Merriweather',serif;font-size:1.1rem;font-weight:700;color:#111827">ImplementIQ Systems</div>
+      <div style="color:#64748b;font-size:0.8rem;margin-top:0.25rem">NIF PT000000000 · Setubal, Portugal</div>
     </div>
     <div class="print-doc-number">
-      <div style="color:#5a3d9a;font-size:22px;font-weight:800" id="print-rec-num">REC-001</div>
-      <div style="color:#666;font-size:12px" id="print-rec-date"></div>
-      <div style="margin-top:6px;display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#e8f8ed;color:#2d8a52;border:1px solid #a8d5b8">PAGO</div>
+      <div style="color:#6C5CE7;font-size:1.25rem;font-weight:700" id="print-rec-num">REC-001</div>
+      <div style="color:#64748b;font-size:0.8rem" id="print-rec-date"></div>
+      <div style="margin-top:0.4rem;display:inline-block;padding:0.2rem 0.75rem;border-radius:100px;font-size:0.7rem;font-weight:700;background:#e8f8ed;color:#2d8a52;border:1px solid #a8d5b8;letter-spacing:0.05em">PAGO</div>
     </div>
   </div>
 
   <div class="section-title">Emitir Recibo</div>
-  <div class="section-sub">Confirmacao de pagamento recebido.</div>
+  <div class="section-sub">Confirmacao de pagamento recebido pelo cliente.</div>
 
   <div class="card">
     <div class="card-title">Identificacao do Recibo</div>
@@ -355,7 +406,16 @@ header { background: var(--dark); border-bottom: 1px solid var(--border); paddin
       <div class="field"><label>Referencia</label><input type="text" id="r-payment-ref" placeholder="Ref. MB, IBAN, etc."></div>
     </div>
     <div class="divider"></div>
-    <div class="field"><label>Observacoes</label><textarea id="r-notes" placeholder="Notas adicionais..."></textarea></div>
+    <div class="field"><label>Observacoes</label><textarea id="r-notes" placeholder="Notas adicionais sobre o pagamento..."></textarea></div>
+    <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--color-sand-dark);display:flex;justify-content:space-between;align-items:flex-end">
+      <div style="font-size:0.75rem;color:var(--color-slate)">
+        Emitido por <strong style="color:var(--color-charcoal)">ImplementIQ Systems</strong><br>
+        NIF PT000000000 · Setubal, Portugal
+      </div>
+      <div style="text-align:center">
+        <div style="width:200px;border-bottom:1px solid var(--color-ash);padding-bottom:4px;font-size:0.7rem;color:var(--color-ash);letter-spacing:0.05em">ASSINATURA / CARIMBO</div>
+      </div>
+    </div>
   </div>
 
   <div class="actions">
@@ -463,9 +523,9 @@ function sendWhatsApp() {
   msg += 'Servicos:\n' + items + '\n';
   msg += 'Total (IVA incl.): ' + total + '\n\n';
   msg += 'Prazo de entrega: ' + deadline + '\n';
-  msg += 'Pagamento: ' + payment + '\n';
-  if(notes) msg += '\nNotas: ' + notes + '\n';
-  msg += '\nImplementIQ Systems - Setubal, Portugal';
+  msg += 'Pagamento: ' + payment;
+  if(notes) msg += '\n\nNotas: ' + notes;
+  msg += '\n\nImplementIQ Systems - Setubal, Portugal';
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
 
